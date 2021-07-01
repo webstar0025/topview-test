@@ -7,9 +7,9 @@ import LocationIcon from '../../assets/ico-location.png';
 
 import styles from './MainContent.module.css'
 
-export const MainContent = () => {
-  return (
-    <div className={styles.container}>
+export const MainContent = ({ filters }) => (
+  <div className={styles.container}>
+    {(filters.all || filters.busStop) && (
       <div className={styles.itemContainer}>
         <div className={styles.itemLogo}>
           <BusIcon />
@@ -44,6 +44,8 @@ export const MainContent = () => {
           </div>
         </div>
       </div>
+    )}
+    {(filters.all || filters.busStop) && (
       <div className={styles.itemContainer}>
         <div className={styles.itemLogo}>
           <BusIcon />
@@ -72,6 +74,8 @@ export const MainContent = () => {
           </div>
         </div>
       </div>
+    )}
+    {(filters.all || filters.attraction) && (
       <div className={styles.itemContainer}>
         <div className={styles.itemLogo}>
           <AttractionIcon />
@@ -85,6 +89,8 @@ export const MainContent = () => {
           </div>
         </div>
       </div>
+    )}
+    {(filters.all || filters.park) && (
       <div className={styles.itemContainer}>
         <div className={styles.itemLogo}>
           <img
@@ -103,6 +109,8 @@ export const MainContent = () => {
           </div>
         </div>
       </div>
+    )}
+    {(filters.all || filters.museum) && (
       <div className={styles.itemContainer}>
         <div className={styles.itemLogo}>
           <img
@@ -121,6 +129,6 @@ export const MainContent = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
-}
+    )}
+  </div>
+);

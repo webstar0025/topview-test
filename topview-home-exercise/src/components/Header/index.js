@@ -9,9 +9,21 @@ import ExchangeIcon from '../../assets/ico-exchange.png';
 
 import styles from './Header.module.css';
 
-const FILTERS = ['Bus Stops', 'Attractions', 'Parks', 'Museums'];
+const FILTERS = [{
+    title: 'Bus Stops',
+    name: 'busStop'
+  }, {
+    title: 'Attractions',
+    name: 'attraction'
+  }, {
+    title: 'Parks',
+    name: 'park'
+  } , {
+    title: 'Museums',
+    name: 'museum'
+  }];
 
-export const Header = () => {
+export const Header = ({ filters, changeFilters }) => {
   const [locations, setLocations] = useState([1, 0]);
 
   const addDestination = () => {
@@ -35,15 +47,20 @@ export const Header = () => {
         <div className={styles.locaitonsContainer}>
           <div className={styles.locations}>
             {locations.length === 2 && (
-              <img
-                src={ExchangeIcon}
-                alt=""
+              <div
                 className={styles.exchangeIcon}
                 onClick={exchangeLocation}
-              />
+              >
+                <img
+                  width={16}
+                  height={16}
+                  src={ExchangeIcon}
+                  alt=""
+                />
+              </div>
             )}
             {locations.map((location, index) => 
-              <div className={styles.locationContent}>
+              <div key={`location-${index}`} className={styles.locationContent}>
                 <div className={styles.locationLogo}>
                   {(locations.length < 3 || index === 0) ? (
                     <img
@@ -96,9 +113,14 @@ export const Header = () => {
         {FILTERS.map((item, index) =>
           <div
             key={index} 
-            className={styles.filterButton}
+            className={
+              filters[item.name]
+                ? styles.activeFilterButton
+                : styles.filterButton
+            }
+            onClick={() => changeFilters(item.name)}
           >
-            {item}
+            {item.title}
           </div>
         )}
       </div>

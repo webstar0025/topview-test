@@ -4,4 +4,11 @@
   margin: auto;
   background-color: white;
   border: 1px solid gray;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: auto;
+}
+
+.App::-webkit-scrollbar { 
+  display: none;
 }
